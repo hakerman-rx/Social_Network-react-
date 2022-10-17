@@ -1,4 +1,5 @@
 import { connect } from "react-redux"
+import { getUsers } from "../../../store/reducers/user_red"
 import Users from "./Users"
 
 const mapStateToProps = state => {
@@ -7,4 +8,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {})(Users)
+export default connect(mapStateToProps, {getUsers})(Users)

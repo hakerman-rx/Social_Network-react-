@@ -1,13 +1,22 @@
+import { useEffect } from "react"
+
 const Users = (props) => {
-    const users = props.users.map((user)=>{
+    useEffect(() => {
+        if (props.users.length === 0) {
+            fetch('https://jsonplaceholder.typicode.com/users')
+                .then(response => response.json())
+                .then(users => props.getUsers(users))
+        }
+    },[])
+    const users = props.users.map((user) => {
         return (
             <li id={user.id} key={user.id}>
                 <div>{user.name}</div>
-                <div>{user.company}</div>
+                <div>{user.company.name}</div>
             </li>
         )
     })
-    return(
+    return (
         <div className="users">
             <ul>
                 {users}
